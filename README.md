@@ -104,3 +104,23 @@ https://keibatennki.jp/pc/index.php
 会員登録及び メモ機能及びLINE通知機能。
 
 昨晩予想したレースが発走何分前ですよ。と通知出来るように。
+
+### ■機能の実装方針予定
+
+開発環境： Docker
+サーバーサイド: Ruby on Rails 7系
+Ruby 3.1.6  Rails 7.0.4.3
+フロントエンド: Hotwire,React(本リリース実装予定),shadcn/ui(本リリース実装予定)
+CSSフレームワーク: Tailwind CSS
+WebAPI: 競馬場の位置情報取得 :Geocoder, LINE通知 :LINE Messaging API(本リリース実装予定)
+インフラ:
+Webアプリケーションサーバ: Fly.io
+ファイルサーバ: AWS S3
+データベースサーバ: PostgreSQL
+
+その他
+VCS: GitHub
+CI/CD: GitHubActions
+
+レース情報取得出来るAPIないので最初はDBに手打ちするつもりです。
+可能であればスクレイピング出来るようにしたいです。

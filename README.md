@@ -96,8 +96,21 @@ https://keibatennki.jp/pc/index.php
 
 ★MVP時
 
-競馬場、時間入力して、レースのコースレイアウトと風の向き強さの表示。(可能なら非同期処理)
+2パターンサービスを用意して
+1.開催競馬場(2場or3場)を入力して、現在時刻から一番直近時間のレースのコースレイアウトと風の向き強さの表示。(可能なら非同期処理)
+2.開催競馬場(2場or3場)を入力して、一時間毎に時間を選べて選んだ時間の一番直近の時間のレースのコースレイアウトと風の向き強さの表示。(可能なら非同期処理)
 <a href="https://gyazo.com/42f41923032a42cda8e8e7a9fba9d886"><img src="https://i.gyazo.com/42f41923032a42cda8e8e7a9fba9d886.png" alt="Image from Gyazo" width="850"/></a>
+
+9月頭MVPだとして、直近の開催競馬場が中山競馬場、中京競馬場なのでその2つのレイアウト＋風の情報みれる状況でリリース。
+
+コースレイアウトに関しては、https://gyazo.com/e8a194f43f8a88b3ed9e3c11691f0ea5
+公式のレイアウト画像をcanvaで加工して使用。
+9月以降～仮にMVPだとして、
+9月中山、中京実装。以降で東京、京都、新潟と順次実装を行う。
+
+レース番号とコースの紐づけは最初は手打ちで実装。
+後々は、https://race.netkeiba.com/top/?rf=navi
+にスクレイピングして、データ取得を考えています。
 
 ★本リリーズ時
 
@@ -112,7 +125,7 @@ https://keibatennki.jp/pc/index.php
 Ruby 3.1.6  Rails 7.0.4.3
 フロントエンド: Hotwire,React(本リリース実装予定),shadcn/ui(本リリース実装予定)
 CSSフレームワーク: Tailwind CSS
-WebAPI: 競馬場の位置情報取得 :Geocoder, LINE通知 :LINE Messaging API(本リリース実装予定)
+WebAPI: 競馬場の位置情報取得 :Geocoder, 天気情報の取得 :OpenWeather, LINE通知 :LINE Messaging API(本リリース実装予定)
 インフラ:
 Webアプリケーションサーバ: Fly.io
 ファイルサーバ: AWS S3
@@ -121,6 +134,3 @@ Webアプリケーションサーバ: Fly.io
 その他
 VCS: GitHub
 CI/CD: GitHubActions
-
-レース情報取得出来るAPIないので最初はDBに手打ちするつもりです。
-可能であればスクレイピング出来るようにしたいです。

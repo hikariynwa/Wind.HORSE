@@ -134,3 +134,6 @@ Webアプリケーションサーバ: Fly.io
 その他
 VCS: GitHub
 CI/CD: GitHubActions
+
+画面遷移図はこちら
+[画面遷移図](https://www.figma.com/design/lvIulo0KmDCjKPaZjzSuNl/wind-horse?node-id=0-1&t=3WefSuGJgu3IIzvJ-1)

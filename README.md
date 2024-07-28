@@ -135,5 +135,62 @@ Webアプリケーションサーバ: Fly.io
 VCS: GitHub
 CI/CD: GitHubActions
 
-画面遷移図はこちら
+## ■画面遷移図はこちら
 [画面遷移図](https://www.figma.com/design/lvIulo0KmDCjKPaZjzSuNl/wind-horse?node-id=0-1&t=3WefSuGJgu3IIzvJ-1)
+
+## ■ER図はこちら
+```mermaid
+erDiagram
+search_datas ||--|{ courses: "サーチデータは複数のコースを持つ"
+courses ||--|{ stadiums: "コースは複数の競馬場を持つ"
+users ||--o{ user_search_datas: "ユーザーは複数の記録を持つ"
+search_datas ||--o{ user_search_datas: "サーチデータは複数の記録を持つ"
+
+users {
+    bigint id PK "ユーザーid"
+    string name "ユーザーネーム"
+    string email "メールアドレス"
+    string crypted_password "暗号化されたパスワード"
+    string reset_password_token "パスワードリセットトークン"
+    datetime reset_password_sent_at "パスワードリセットトークン送信日時"
+    datetime created_at "作成日時"
+    datetime updated_at "更新日時"
+}
+
+search_datas {
+    bigint id PK "サーチデータid"
+    string course_id FK "コース"
+    integer wind_direction_id FK "風の方位"
+    integer wind_power "風の強さ"
+    datetime data_time "データ取得時の時間"
+    datetime created_at "作成日時"
+}
+
+courses {
+    bigint id PK "コースid"
+    string stadium_id FK "競馬場のid"
+    integer track_type "芝か砂のレースか"
+    integer distance_id FK "距離のid"
+    integer track_rayout "外回りか内回りか"
+    datetime created_at "作成日時"
+    datetime updated_at "更新日時"
+}
+
+stadiums {
+    bigint id PK "競馬場のid"
+    string name "競馬場の名前"
+    string city "競馬場の住所"
+    datetime created_at "作成日時"
+    datetime updated_at "更新日時"
+}
+
+user_search_datas {
+    bigint id PK "記録のid"
+    bigint users_id FK "ユーザーのid"
+    bigint search_datas_id FK "サーチデータのid"
+    string memo "メモ機能"
+    datetime created_at "作成日時"
+    datetime updated_at "更新日時"
+}
+```
+

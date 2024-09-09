@@ -18,7 +18,12 @@
   </head>
 
   <body class="bg-gray-200">
-    <%= render "shared/header" %>
+    <!-- ログイン機能実装後記載。-->
+    <%# if logged_in? %>
+      <%#= render "shared/header" %>
+    <%# else %>
+      <%= render "shared/before_login_header" %>
+    <%# end %>
     <%= yield %>
   </body>
 </html>

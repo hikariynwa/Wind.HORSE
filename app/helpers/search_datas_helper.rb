@@ -1,0 +1,2 @@
+module SearchDatasHelper
+end

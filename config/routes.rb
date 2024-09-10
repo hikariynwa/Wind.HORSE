@@ -12,4 +12,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "static_pages#top"
+
+  # 風のデータのルーティング
+  resources :search_datas do
+    collection do
+      get 'select'
+    end
+  end
 end

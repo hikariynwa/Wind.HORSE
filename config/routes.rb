@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "static_pages#top"
 
+  # 風の情報を取得するルーティング
+  resources :winds, only: [:show]
+
   # 風のデータのルーティング
   resources :search_datas do
     collection do

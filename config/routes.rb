@@ -14,12 +14,12 @@ Rails.application.routes.draw do
   root "static_pages#top"
 
   # 風の情報を取得するルーティング
-  resources :winds, only: [:show]
+  resources :winds, only: [ :show ]
 
   # 風のデータのルーティング
   resources :search_datas do
     collection do
-      get 'select'
+      get "select"
     end
   end
 end

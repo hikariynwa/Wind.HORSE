@@ -1,13 +1,13 @@
-require 'httparty'
-require 'uri'
+require "httparty"
+require "uri"
 
 class WindData < ApplicationRecord
   include HTTParty
-  base_uri 'api.openweathermap.org'
+  base_uri "api.openweathermap.org"
 
   def initialize(location)
-    @api_key = ENV['OPENWEATHERMAP_API_KEY']
-    @options = { query: { q: "#{location},jp", appid: @api_key, lang: 'ja' } }
+    @api_key = ENV["OPENWEATHERMAP_API_KEY"]
+    @options = { query: { q: "#{location},jp", appid: @api_key, lang: "ja" } }
 
     # リクエスト内容のログ出力
     Rails.logger.info "APIリクエスト: #{@options.inspect}"

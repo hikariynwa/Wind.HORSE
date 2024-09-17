@@ -50,7 +50,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # Railsで環境変数を管理することができるgem
-  gem 'dotenv-rails'
+  gem "dotenv-rails"
 end
 
 group :development do

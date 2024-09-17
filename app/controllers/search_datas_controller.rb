@@ -15,5 +15,15 @@ class SearchDatasController < ApplicationController
     @location_name = location_mapping[location]
 
     @course_image = "#{location.downcase}_course.png"
+
+    # 競馬場ごとの方位画像の回転角度を設定
+    course_rotation_mapping = {
+      "Fuchu" => "180deg",
+      "Fushimi" => "45deg",
+      "Niigata" => "135deg"
+    }
+
+    # 回転角度を変数に格納
+    @course_rotation = course_rotation_mapping[location]
   end
 end

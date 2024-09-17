@@ -4,9 +4,16 @@
     <div class="text-3xl"><%= @location_name %>競馬場</div>
   </div>
 
-  <!-- 競馬場コース画像の挿入 -->
-  <div class="absolute w-full flex justify-center mx-auto mt-28">
-    <%= render 'shared/race_course' %>
+  <!-- 競馬場コース画像と方位マークの挿入 -->
+  <div class="absolute w-full flex justify-center mx-auto mt-40">
+    <div class="relative mx-auto w-full max-w-xl">
+      <%= image_tag @course_image, alt: "#{@location_name}競馬場コース", class: "max-w-xl h-auto" %>
+
+      <!-- 方位マークの表示 -->
+      <div class="absolute top-5 right-5">
+        <%= image_tag 'direction.png', alt: "N", style: "transform: rotate(#{@course_rotation}); width: 50px;" %>
+      </div>
+    </div>
   </div>
 
   <!-- ボタン表示部分 -->

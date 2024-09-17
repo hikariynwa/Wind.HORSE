@@ -1,21 +1,21 @@
 <div class="relative h-screen">
   <!-- タイトル部分 -->
-  <div class="absolute top-16 w-full flex justify-center">
-    <div class="text-3xl">ここに風の情報が表示されます。</div>
+  <div class="absolute top-16 w-full flex justify-center mx-auto">
+    <div class="text-3xl"><%= @location_name %>競馬場</div>
   </div>
 
   <!-- ボタン表示部分 -->
-  <div class="absolute bottom-16 w-full flex justify-center">
+  <div class="absolute bottom-16 w-full flex justify-center mx-auto">
     <div>
-      <button id="fetch-wind" class="text-2xl bg-green-600 p-3 text-white">風の情報を取得する</button>
-      <div id="wind-result" class="mt-4 text-2xl text-blue-500"></div>
+      <button id="fetch-wind" class="text-2xl bg-green-600 p-3 text-white w-full text-center">風の情報を取得する</button>
+      <div id="wind-result" class="mt-4 text-2xl text-blue-500 w-full text-center"></div>
     </div>
   </div>
 </div>
 
 <script>
   document.getElementById('fetch-wind').addEventListener('click', function() {
-    const location = "<%= params[:location] %>"; // 例えば、検索結果から場所を動的に取得する場合
+    const location = "<%= params[:location] %>"; // 検索結果から場所を取得
 
     fetch(`/winds/${location}`, {
       method: 'GET',
@@ -30,7 +30,7 @@
       if (data.error) {
         resultElement.textContent = data.error;
       } else {
-        resultElement.textContent = `風速: ${data.wind_speed} m/s, 風向: ${data.wind_direction}度`;
+        resultElement.textContent = `風速: ${data.wind_speed} m/s, 風向: ${data.wind_direction}`;
       }
     })
     .catch(error => {

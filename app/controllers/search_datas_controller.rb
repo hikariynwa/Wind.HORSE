@@ -11,5 +11,7 @@ class SearchDatasController < ApplicationController
       "Fushimi" => "京都",
       "Niigata" => "新潟"
     }
+
+    @location_name = location_mapping[location]
   end
 end

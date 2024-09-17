@@ -4,8 +4,13 @@
     <div class="text-3xl"><%= @location_name %>競馬場</div>
   </div>
 
+  <!-- 競馬場コース画像の挿入 -->
+  <div class="absolute w-full flex justify-center mx-auto mt-28">
+    <%= render 'shared/race_course' %>
+  </div>
+
   <!-- ボタン表示部分 -->
-  <div class="absolute bottom-16 w-full flex justify-center mx-auto">
+  <div class="absolute bottom-10 w-full flex justify-center mx-auto">
     <div>
       <button id="fetch-wind" class="text-2xl bg-green-600 p-3 text-white w-full text-center">風の情報を取得する</button>
       <div id="wind-result" class="mt-4 text-2xl text-blue-500 w-full text-center"></div>

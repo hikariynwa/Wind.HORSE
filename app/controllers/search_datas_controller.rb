@@ -13,5 +13,7 @@ class SearchDatasController < ApplicationController
     }
 
     @location_name = location_mapping[location]
+
+    @course_image = "#{location.downcase}_course.png"
   end
 end

@@ -4,28 +4,25 @@
     <div class="text-3xl"><%= @location_name %>競馬場</div>
   </div>
 
-  <!-- 競馬場コース画像と方位マークの挿入 -->
-  <div class="absolute w-full flex justify-center mx-auto mt-40">
-    <div class="relative mx-auto w-full max-w-xl">
-      <%= image_tag @course_image, alt: "#{@location_name}競馬場コース", class: "max-w-xl h-auto" %>
-
-      <!-- 方位マークの表示 -->
-      <div class="absolute top-5 right-5">
-        <%= image_tag 'direction.png', alt: "N", style: "transform: rotate(#{@course_rotation}); width: 50px;" %>
-      </div>
-    </div>
-  </div>
-
-  <!-- ボタン表示部分 -->
-  <div class="absolute bottom-10 w-full flex justify-center mx-auto">
+  <!-- 風の情報を取得するボタン -->
+  <div class="absolute top-28 w-full flex justify-center mx-auto">
     <div>
       <button id="fetch-wind" class="text-2xl bg-green-600 p-3 text-white w-full text-center">風の情報を取得する</button>
       <div id="wind-result" class="mt-4 text-2xl text-blue-500 w-full text-center"></div>
     </div>
   </div>
+
+  <!-- 芝/砂と距離選択の表示 -->
+  <%= render 'shared/course_select' %>
+
+  <!-- 競馬場コース画像と方位マークの挿入 -->
+  <div class="absolute w-full flex justify-center mx-auto mt-80"> <!-- コース画像の位置をさらに下に -->
+    <%= render 'shared/course_information' %>
+  </div>
 </div>
 
 <script>
+  // 風の情報を取得するボタンのイベントリスナー
   document.getElementById('fetch-wind').addEventListener('click', function() {
     const location = "<%= params[:location] %>"; // 検索結果から場所を取得
 
@@ -48,6 +45,27 @@
     .catch(error => {
       console.error('Error fetching wind data:', error);
       document.getElementById('wind-result').textContent = '風の情報を取得できませんでした。';
+    });
+  });
+
+  // ドロップダウンメニューの挙動を制御するコード
+  document.querySelectorAll('[data-dropdown-target="button"]').forEach(button => {
+    button.addEventListener('click', function() {
+      const dropdown = this.nextElementSibling;  // 次の兄弟要素（ドロップダウンメニュー）
+      dropdown.classList.toggle('hidden');  // メニューの表示/非表示を切り替え
+    });
+  });
+
+  // ドロップダウン内の選択肢をクリックした時の処理
+  document.querySelectorAll('[data-action="click->dropdown#selectOption"]').forEach(option => {
+    option.addEventListener('click', function() {
+      const selectedValue = this.getAttribute('data-value');
+      const button = this.closest('[data-dropdown-target="dropdown"]').previousElementSibling;  // 親メニューのボタン
+
+      // ボタンの中のspanを更新
+      button.querySelector('span').textContent = this.textContent.trim();
+
+      this.closest('[data-dropdown-target="dropdown"]').classList.add('hidden');  // ドロップダウンを隠す
     });
   });
 </script>

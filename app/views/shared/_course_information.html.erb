@@ -1,0 +1,8 @@
+<div class="relative mx-auto w-full max-w-xl">
+  <%= image_tag @course_image, alt: "#{@location_name}競馬場コース", class: "max-w-xl h-auto" %>
+
+  <!-- 方位マークの表示 -->
+  <div class="absolute top-5 right-5">
+    <%= image_tag 'direction.png', alt: "N", style: "transform: rotate(#{@course_rotation}); width: 50px;" %>
+  </div>
+</div>

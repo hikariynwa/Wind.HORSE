@@ -1,23 +1,22 @@
 <div class="relative h-screen">
   <!-- タイトル部分 -->
-  <div class="absolute top-16 w-full flex justify-center mx-auto">
+  <div class="w-full flex justify-center py-6">
     <div class="text-3xl"><%= @location_name %>競馬場</div>
   </div>
-
   <!-- 風の情報を取得するボタン -->
-  <div class="absolute top-28 w-full flex justify-center mx-auto">
+  <div class="w-full flex justify-center py-6">
     <div>
       <button id="fetch-wind" class="text-2xl bg-green-600 p-3 text-white w-full text-center">風の情報を取得する</button>
       <div id="wind-result" class="mt-4 text-2xl text-blue-500 w-full text-center"></div>
     </div>
   </div>
-
   <!-- 芝/砂と距離選択の表示 -->
-  <%= render 'shared/course_select' %>
-
+  <div class="w-full flex justify-center py-6">
+    <%= render 'shared/course_select' %>
+  </div>
   <!-- 競馬場コース画像と方位マークの挿入 -->
-  <div class="absolute w-full flex justify-center mx-auto mt-80"> <!-- コース画像の位置をさらに下に -->
-    <%= render 'shared/course_information' %>
+  <div id="course-image" class="flex justify-center mt-16" >
+    <%= image_tag @course_image, alt: "#{@location_name}競馬場コース", class: "max-w-xl h-auto" %>
   </div>
 </div>
 

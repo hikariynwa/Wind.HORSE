@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "course_layouts/show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -15,6 +16,9 @@ Rails.application.routes.draw do
 
   # 風の情報を取得するルーティング
   resources :winds, only: [ :show ]
+
+  # コースのレイアウトの情報を取得するルーティング
+  get "courses/show", to: "courses#show", as: "courses_show"
 
   # 風のデータのルーティング
   resources :search_datas do

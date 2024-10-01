@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :winds, only: [ :show ]
 
   # コースのレイアウトの情報を取得するルーティング
-  get 'courses/show', to: 'courses#show', as: 'courses_show'
+  get "courses/show", to: "courses#show", as: "courses_show"
 
   # 風のデータのルーティング
   resources :search_datas do

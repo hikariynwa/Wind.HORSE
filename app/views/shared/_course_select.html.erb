@@ -1,34 +1,9 @@
-<!-- 芝/砂と距離の選択を横並びで表示 -->
 <div class="absolute top-56 w-full flex justify-center mx-auto space-x-8">
-  <!-- 芝/砂の選択 -->
   <div class="relative z-50">
-    <button data-dropdown-target="button" type="button" class="inline-flex justify-center w-64 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none" id="options-menu" aria-haspopup="true" aria-expanded="true">
-      <span>芝か砂か選択してください</span>
-      <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-      </svg>
-    </button>
-    <div data-dropdown-target="dropdown" class="origin-top-right absolute left-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-      <div class="py-1" role="none">
-        <div class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer" data-value="turf" data-action="click->dropdown#selectOption">芝</div>
-        <div class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer" data-value="dirt" data-action="click->dropdown#selectOption">砂</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 距離の選択 -->
-  <div class="relative z-50">
-    <button data-dropdown-target="button" type="button" class="inline-flex justify-center w-64 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none" id="distance-menu" aria-haspopup="true" aria-expanded="true">
-      <span>距離を選択してください</span>
-      <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-      </svg>
-    </button>
-    <div data-dropdown-target="dropdown" class="origin-top-right absolute left-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden" role="menu" aria-orientation="vertical" aria-labelledby="distance-menu">
-      <div class="py-1" role="none">
-        <div class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer" data-value="1600" data-action="click->dropdown#selectOption">1600m</div>
-        <div class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer" data-value="2000" data-action="click->dropdown#selectOption">2000m</div>
-      </div>
-    </div>
+    <%= form_with url: courses_show_path, method: :get, id: "course-form", data: { turbo_method: :get, turbo_stream: true } do |form| %>
+      <%= form.hidden_field :location, value: params[:location] %> <!-- 競馬場の場所を送信 -->
+      <%= form.select :course_option, [["芝 1400m","芝 1400m"],["芝 1600m","芝 1600m"],["芝 2000m","芝 2000m"],["砂 1600m","砂 1600m"]]%>
+      <%= form.submit "表示" %>
+    <% end %>
   </div>
 </div>

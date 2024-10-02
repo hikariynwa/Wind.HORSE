@@ -14,9 +14,13 @@
   <div class="w-full flex justify-center py-6">
     <%= render 'shared/course_select' %>
   </div>
-  <!-- 競馬場コース画像と方位マークの挿入 -->
+  <!-- 競馬場コース画像-->
   <div id="course-image" class="flex justify-center mt-16" >
     <%= image_tag @course_image, alt: "#{@location_name}競馬場コース", class: "max-w-xl h-auto" %>
+  </div>
+
+  <div class="absolute top-48 right-96">
+    <%= image_tag 'direction.png', alt: "北", style: "transform: rotate(#{@course_rotation}); width: 100px;" %>
   </div>
 </div>
 

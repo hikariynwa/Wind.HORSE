@@ -27,8 +27,11 @@ gem "jbuilder"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
-# HTTPリクエストをopenweather apiに送る用
+# for sending HTTP requests to the OpenWeather API
 gem "httparty"
+
+# User authentication with Devise
+gem "devise"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
@@ -49,7 +52,7 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  # Railsで環境変数を管理することができるgem
+  # gem for managing environment variables in Rails
   gem "dotenv-rails"
 end
 

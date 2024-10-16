@@ -1,10 +1,9 @@
 <div class="container mx-auto h-screen flex flex-col justify-center items-center">
-  <!-- ログインのタイトル -->
+
   <div class="py-6 mt-4">
     <div class="text-3xl">ログイン</div>
   </div>
 
-  <!-- フォーム部分 -->
   <div class="w-full max-w-md py-6">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'w-full' }) do |f| %>
       <div class="field mb-4">
@@ -30,7 +29,6 @@
     <% end %>
   </div>
 
-  <!-- リンク部分 -->
   <div class="w-full max-w-md">
     <%= render "users/shared/links" %>
   </div>

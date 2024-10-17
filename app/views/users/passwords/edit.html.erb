@@ -1,25 +1,33 @@
-<h2>Change your password</h2>
+<div class="container mx-auto h-screen flex flex-col justify-center items-center">
+  <div class="py-6 mt-4">
+    <div class="text-3xl">パスワード変更</div>
+  </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+  <div class="w-full max-w-md py-6">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+      <div class="field mb-4">
+        <%= f.label :password, "New password", class: 'block text-lg' %><br />
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+        <% end %>
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'w-full p-2 border border-gray-300 rounded' %>
+      </div>
+
+      <div class="field mb-4">
+        <%= f.label :password_confirmation, "Confirm new password", class: 'block text-lg' %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'w-full p-2 border border-gray-300 rounded' %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Change my password", class: 'bg-blue-600 text-white py-2 px-4 rounded' %>
+      </div>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="w-full max-w-md">
+    <%= render "users/shared/links" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

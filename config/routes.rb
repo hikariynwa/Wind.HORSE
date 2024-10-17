@@ -27,4 +27,9 @@ Rails.application.routes.draw do
       get "select"
     end
   end
+
+  # 開発環境でのメール確認用
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

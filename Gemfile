@@ -39,6 +39,8 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+gem "config"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -54,6 +56,9 @@ group :development, :test do
 
   # gem for managing environment variables in Rails
   gem "dotenv-rails"
+
+  # Add letter_opener_web for email testing
+  gem "letter_opener_web", "2.0.0"
 end
 
 group :development do

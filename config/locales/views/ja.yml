@@ -1,0 +1,40 @@
+ja:
+  helpers:
+    submit:
+      login: 登録
+      submit: 保存
+      update: 更新
+    label:
+      email: メールアドレス
+      password: パスワード
+  users:
+    sessions:
+      new:
+        title: ログイン
+    registrations:
+      new:
+        title: 新規登録
+    passwords:
+      new:
+        title: パスワードリセット申請
+      edit:
+        title: パスワード変更
+        new_password: 新しいパスワード
+    links:
+      to_login_page: ログインページへ
+      to_sign_up_page: 新規登録ページへ
+      Forgot_your_password: パスワードをお忘れですか？
+      Didn't_receive_confirmation_instructions: 確認メールを受け取っていませんか？
+      Didn't_receive_unlock_instructions: アンロックの指示を受け取っていませんか？
+    buttons:
+      login: ログイン
+      sign_up: 新規登録
+      send_me_reset_password_instructions: パスワードリセットメールを送信
+      Change_my_password: パスワード再設定
+  devise:
+    registrations:
+      new:
+        password_hint: "%{count}文字以上で入力してください"
+  header:
+    login: ログイン
+    logout: ログアウト

@@ -1,7 +1,7 @@
 <div class="container mx-auto h-screen flex flex-col justify-center items-center">
 
   <div class="py-6 mt-4">
-    <div class="text-3xl">ログイン</div>
+    <div class="text-3xl"><%= t("users.sessions.new.title")%></div>
   </div>
 
   <div class="w-full max-w-md py-6">
@@ -24,7 +24,7 @@
       <% end %>
 
       <div class="actions">
-        <%= f.submit "Log in", class: 'bg-blue-600 text-white py-2 px-4 rounded' %>
+        <%= f.submit t("users.buttons.login"), class: 'bg-blue-600 text-white py-2 px-4 rounded' %>
       </div>
     <% end %>
   </div>

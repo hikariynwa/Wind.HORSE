@@ -1,0 +1,32 @@
+<div class="container h-screen mx-auto">
+  <div class="w-full flex justify-center py-6">
+    <div class="text-3xl">過去データ一覧</div>
+  </div>
+
+  <%= search_form_for @q, url: search_datas_path, class: "mb-4" do |f| %>
+    <div class="flex items-center space-x-2">
+      <%= f.label :location_name_cont, "場所名", class: "font-medium" %>
+      <%= f.search_field :location_name_cont, class: "border rounded px-2 py-1" %>
+
+      <%= f.label :wind_speed_gteq, "風速（以上）", class: "font-medium" %>
+      <%= f.number_field :wind_speed_gteq, step: 0.1, class: "border rounded px-2 py-1 w-20" %>
+
+      <%= f.label :wind_direction_cont, "風向", class: "font-medium" %>
+      <%= f.search_field :wind_direction_cont, class: "border rounded px-2 py-1" %>
+
+      <%= f.submit "検索", class: "bg-blue-500 text-white px-4 py-1 rounded" %>
+    </div>
+  <% end %>
+
+  <% if @search_datas.empty? %>
+    <p class="text-center text-gray-500"><%= t('views.messages.no_searchdatas') %></p>
+  <% else %>
+    <% @search_datas.each do |search_data| %>
+      <%= render "shared/search_datas_list", search_data: search_data %>
+    <% end %>
+  <% end %>
+
+  <div class="mt-4">
+    <%= paginate @search_datas, theme: 'tailwind' %>
+  </div>
+</div>

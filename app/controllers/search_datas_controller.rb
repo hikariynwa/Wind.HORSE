@@ -26,4 +26,9 @@ class SearchDatasController < ApplicationController
     # 回転角度を変数に格納
     @course_rotation = course_rotation_mapping[location]
   end
+
+  def index
+    @q = SearchData.ransack(params[:q])
+    @search_datas = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(10)
+  end
 end

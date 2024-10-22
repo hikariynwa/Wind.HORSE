@@ -38,3 +38,6 @@ ja:
   header:
     login: ログイン
     logout: ログアウト
+  views:
+    messages:
+      no_searchdatas: "保存されたデータがありません。"

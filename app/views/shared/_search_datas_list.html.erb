@@ -1,0 +1,22 @@
+<div class="overflow-x-auto">
+  <table class="min-w-full bg-white">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="py-2 px-4 border-b"><%= sort_link(@q, :location_name, "場所名") %></th>
+        <th class="py-2 px-4 border-b"><%= sort_link(@q, :wind_speed, "風速 (m/s)") %></th>
+        <th class="py-2 px-4 border-b"><%= sort_link(@q, :wind_direction, "風向") %></th>
+        <th class="py-2 px-4 border-b">メモ</th>
+        <th class="py-2 px-4 border-b"><%= sort_link(@q, :created_at, "作成日時") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="py-2 px-4 border-b"><%= search_data.location_name %></td>
+        <td class="py-2 px-4 border-b"><%= search_data.wind_speed %></td>
+        <td class="py-2 px-4 border-b"><%= search_data.wind_direction %></td>
+        <td class="py-2 px-4 border-b"><%= search_data.memo %></td>
+        <td class="py-2 px-4 border-b"><%= search_data.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

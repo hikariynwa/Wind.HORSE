@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location_name: MyString
+  course_image: MyString
+  wind_speed: 1.5
+  wind_direction: MyString
+
+two:
+  location_name: MyString
+  course_image: MyString
+  wind_speed: 1.5
+  wind_direction: MyString

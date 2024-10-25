@@ -22,12 +22,35 @@
   <div class="absolute top-48 right-96">
     <%= image_tag 'direction.png', alt: "北", style: "transform: rotate(#{@course_rotation}); width: 100px;" %>
   </div>
+
+  <%= form_with model: @search_data, url: search_datas_path, local: true do |f| %>
+    <%= f.hidden_field :location_name, value: @location_name %>
+    <%= f.hidden_field :wind_speed, value: @wind_speed %>
+    <%= f.hidden_field :wind_direction, value: @wind_direction %>
+
+    <div>
+      <%= f.label :memo, "メモ" %>
+      <%= f.text_area :memo %>
+    </div>
+
+    <%= f.submit "保存する", class: "bg-blue-500 text-white px-4 py-2" %>
+  <% end %>
 </div>
 
 <script>
   // 風の情報を取得するボタンのイベントリスナー
   document.getElementById('fetch-wind').addEventListener('click', function() {
-    const location = "<%= params[:location] %>"; // 検索結果から場所を取得
+  // location_name の値をフォームから取得
+    let location = document.querySelector('input[name="search_data[location_name]"]').value;
+
+  // 日本語の地名を対応する英語表記に変換
+    if (location === '東京') {
+      location = 'Fuchu';  // 府中（東京競馬場）
+    } else if (location === '京都') {
+      location = 'Fushimi';  // 伏見（京都競馬場）
+    } else if (location === '新潟') {
+      location = 'Niigata';  // 新潟
+    }
 
     fetch(`/winds/${location}`, {
       method: 'GET',
@@ -43,6 +66,8 @@
         resultElement.textContent = data.error;
       } else {
         resultElement.textContent = `風速: ${data.wind_speed} m/s, 風向: ${data.wind_direction}`;
+        document.querySelector('input[name="search_data[wind_speed]"]').value = data.wind_speed;
+        document.querySelector('input[name="search_data[wind_direction]"]').value = data.wind_direction;
       }
     })
     .catch(error => {

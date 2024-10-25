@@ -7,6 +7,6 @@ class SearchData < ApplicationRecord
   belongs_to :user
 
   def self.ransackable_attributes(auth_object = nil)
-    [ "course_image", "created_at", "id", "location_name", "memo", "updated_at", "wind_direction", "wind_speed" ]
+    [ "created_at", "id", "location_name", "memo", "updated_at", "wind_direction", "wind_speed" ]
   end
 end

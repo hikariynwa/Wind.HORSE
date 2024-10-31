@@ -1,0 +1,64 @@
+<div class="relative h-screen">
+  <div class="w-full flex justify-center py-6">
+    <div class="text-3xl"><%= @search_data.location_name %>競馬場</div>
+  </div>
+  <div class="w-full flex justify-center py-6">
+    <div>
+      <button id="fetch-wind" class="text-2xl bg-green-600 p-3 text-white w-full text-center">風の情報を再取得する</button>
+      <div id="wind-result" class="mt-4 text-2xl text-blue-500 w-full text-center">風速: <%= @search_data.wind_speed %> m/s, 風向: <%= @search_data.wind_direction %></div>
+    </div>
+  </div>
+  <%= form_with model: @search_data, url: search_datas_path, local: true do |f| %>
+    <div class="w-full flex justify-center py-6">
+      <%= f.label :memo, "メモ" %>
+      <%= f.text_area :memo, value: @search_data.memo %>
+    </div>
+
+      <%= f.hidden_field :wind_speed %>
+      <%= f.hidden_field :wind_direction %>
+    <div class="w-full flex justify-center py-6">
+      <%= f.submit "保存する", class: "bg-blue-500 text-white px-4 py-2" %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  document.getElementById('fetch-wind').addEventListener('click', function() {
+    let location = "<%= @search_data.location_name %>";
+
+    // 日本語の地名を対応する英語表記に変換
+    if (location === '東京') {
+      location = 'Fuchu';
+    } else if (location === '京都') {
+      location = 'Fushimi';
+    } else if (location === '新潟') {
+      location = 'Niigata';
+    }
+
+    fetch(`/winds/${location}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      const resultElement = document.getElementById('wind-result');
+      if (data.error) {
+        resultElement.textContent = data.error;
+      } else {
+        // 表示を新しいデータに更新
+        resultElement.textContent = `風速: ${data.wind.speed} m/s, 風向: ${data.wind_direction}`;
+
+        // hidden_fieldに新しい値をセット
+        document.querySelector('input[name="search_data[wind_speed]"]').value = data.wind_speed;
+        document.querySelector('input[name="search_data[wind_direction]"]').value = data.wind.direction;
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching wind data:', error);
+      document.getElementById('wind-result').textContent = '風の情報を取得できませんでした。';
+    });
+  });
+</script>

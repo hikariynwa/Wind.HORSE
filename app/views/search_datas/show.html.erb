@@ -1,0 +1,66 @@
+<div class="relative h-screen">
+  <div class="w-full flex justify-center py-6">
+    <div class="text-3xl"><%= @search_data.location_name %>競馬場</div>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="max-w-3xl mx-auto bg-white">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="py-2 px-4 border-b text-center" width="250">競馬場</th>
+          <th class="py-2 px-4 border-b text-center" width="150">風速 (m/s)</th>
+          <th class="py-2 px-4 border-b text-center" width="250">風向</th>
+          <th class="py-2 px-4 border-b text-center" width="150">メモ</th>
+          <th class="py-2 px-4 border-b text-center" width="250">作成日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="py-2 px-4 border-b text-center"><%= @search_data.location_name %></td>
+          <td class="py-2 px-4 border-b text-center"><%= number_with_precision(@search_data.wind_speed, precision: 1) %></td>
+          <td class="py-2 px-4 border-b text-center"><%= @search_data.wind_direction %></td>
+          <td class="py-2 px-4 border-b text-center"><%= @search_data.memo %></td>
+          <td class="py-2 px-4 border-b text-center"><%= @search_data.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="w-full flex justify-center py-6">
+    <%= render 'shared/course_select' %>
+  </div>
+
+  <div id="course-image" class="flex justify-center mt-16" >
+    <%= image_tag @course_image, alt: "#{@location_name}競馬場コース", class: "max-w-xl h-auto" %>
+  </div>
+
+  <div class="absolute top-48 right-96">
+    <%= image_tag 'direction.png', alt: "北", style: "transform: rotate(#{@course_rotation}); width: 100px;" %>
+  </div>
+
+  <div class="w-full flex justify-center py-6">
+    <%= link_to 'データを編集する', edit_search_data_path(@search_data), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-dropdown-target="button"]').forEach(button => {
+    button.addEventListener('click', function() {
+      const dropdown = this.nextElementSibling;  // 次の兄弟要素（ドロップダウンメニュー）
+      dropdown.classList.toggle('hidden');  // メニューの表示/非表示を切り替え
+    });
+  });
+
+  // ドロップダウン内の選択肢をクリックした時の処理
+  document.querySelectorAll('[data-action="click->dropdown#selectOption"]').forEach(option => {
+    option.addEventListener('click', function() {
+      const selectedValue = this.getAttribute('data-value');
+      const button = this.closest('[data-dropdown-target="dropdown"]').previousElementSibling;  // 親メニューのボタン
+
+      // ボタンの中のspanを更新
+      button.querySelector('span').textContent = this.textContent.trim();
+
+      this.closest('[data-dropdown-target="dropdown"]').classList.add('hidden');  // ドロップダウンを隠す
+    });
+  });
+</script>

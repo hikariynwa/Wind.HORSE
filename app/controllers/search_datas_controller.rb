@@ -83,6 +83,42 @@ class SearchDatasController < ApplicationController
 
   def edit
     @search_data = current_user.search_datas.find(params[:id])
+    location = @search_data.location_name
+
+    location_mapping = {
+      "東京" => "Fuchu",
+      "京都" => "Fushimi",
+      "新潟" => "Niigata"
+    }
+
+    english_location = location_mapping[location]
+
+    @course_image = "#{english_location.downcase}_course.png"
+
+    course_rotation_mapping = {
+      "Fuchu" => "180deg",
+      "Fushimi" => "45deg",
+      "Niigata" => "135deg"
+    }
+
+    @course_rotation = course_rotation_mapping[english_location]
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html # HTMLでの表示が必要な場合のフォールバック
+    end
+
+    @wind_speed = params[:wind_speed]
+    @wind_direction = params[:wind_direction]
+  end
+
+  def update
+    @search_data = current_user.search_datas.find(params[:id])
+    if @search_data.update(search_data_params)
+      redirect_to search_data_path(@search_data), notice: "データが正常に更新されました。"
+    else
+      render :edit, alert: "データの更新に失敗しました。", status: :see_other
+    end
   end
 
   private

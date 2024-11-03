@@ -6,7 +6,7 @@
         <th class="py-2 px-4 border-b text-center" width="150"><%= sort_link(@q, :wind_speed, "風速 (m/s)") %></th>
         <th class="py-2 px-4 border-b text-center" width="250"><%= sort_link(@q, :wind_direction, "風向") %></th>
         <th class="py-2 px-4 border-b text-center" width="150">メモ</th>
-        <th class="py-2 px-4 border-b text-center" width="250"><%= sort_link(@q, :created_at, "作成日時") %></th>
+        <th class="py-2 px-4 border-b text-center" width="250"><%= sort_link(@q, :created_at, "最終取得時間") %></th>
         <th class="py-2 px-4 border-b text-center" width="250">各種メニュー</th>
       </tr>
     </thead>
@@ -16,10 +16,16 @@
         <td class="py-2 px-4 border-b text-center"><%= number_with_precision(search_data.wind_speed, precision: 1) %></td>
         <td class="py-2 px-4 border-b text-center w-24"><%= search_data.wind_direction %></td>
         <td class="py-2 px-4 border-b text-center"><%= truncate(search_data.memo, length: 15) %></td>
-        <td class="py-2 px-4 border-b text-center"><%= search_data.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+        <td class="py-2 px-4 border-b text-center">
+          <% if search_data.updated_at > search_data.created_at %>
+            <%= "#{search_data.updated_at.strftime("%Y-%m-%d %H:%M")} (更新日時)" %>
+          <% else %>
+            <%= "#{search_data.created_at.strftime("%Y-%m-%d %H:%M")} (取得日時)" %>
+          <% end %>
+        </td>
         <td class="py-2 px-4 border-b text-center">
             <%= link_to "詳細", search_data_path(search_data, location: search_data.location_name), class: "bg-blue-500 text-white px-2 py-1 rounded" %>
-            <%= link_to "編集", edit_search_data_path(search_data), class: "bg-green-500 text-white px-2 py-1 rounded" %>
+            <%= link_to "編集", edit_search_data_path(search_data, location: search_data.location_name), class: "bg-green-500 text-white px-2 py-1 rounded" %>
             <%= link_to "削除", search_data_path(search_data), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "bg-red-500 text-white px-2 py-1 rounded" %>
           </td>
       </tr>

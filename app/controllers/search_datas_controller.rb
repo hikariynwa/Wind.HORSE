@@ -115,9 +115,9 @@ class SearchDatasController < ApplicationController
   def update
     @search_data = current_user.search_datas.find(params[:id])
     if @search_data.update(search_data_params)
-      redirect_to search_data_path(@search_data), notice: 'データが正常に更新されました。'
+      redirect_to search_data_path(@search_data), notice: "データが正常に更新されました。"
     else
-      render :edit, alert: 'データの更新に失敗しました。', status: :see_other
+      render :edit, alert: "データの更新に失敗しました。", status: :see_other
     end
   end
 

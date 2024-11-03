@@ -8,7 +8,20 @@
       <div id="wind-result" class="mt-4 text-2xl text-blue-500 w-full text-center">風速: <%= @search_data.wind_speed %> m/s, 風向: <%= @search_data.wind_direction %></div>
     </div>
   </div>
-  <%= form_with model: @search_data, url: search_datas_path, local: true do |f| %>
+
+  <div class="w-full flex justify-center py-6">
+    <%= render 'shared/course_select' %>
+  </div>
+
+  <div id="course-image" class="flex justify-center mt-16" >
+    <%= image_tag @course_image, alt: "#{@search_data.location_name}競馬場コース", class: "max-w-xl h-auto" %>
+  </div>
+
+  <div class="absolute top-48 right-96">
+    <%= image_tag 'direction.png', alt: "北", style: "transform: rotate(#{@course_rotation}); width: 100px;" %>
+  </div>
+
+  <%= form_with model: @search_data, url: search_data_path(@search_data), local: true do |f| %>
     <div class="w-full flex justify-center py-6">
       <%= f.label :memo, "メモ" %>
       <%= f.text_area :memo, value: @search_data.memo %>
@@ -49,16 +62,36 @@
         resultElement.textContent = data.error;
       } else {
         // 表示を新しいデータに更新
-        resultElement.textContent = `風速: ${data.wind.speed} m/s, 風向: ${data.wind_direction}`;
-
+        resultElement.textContent = `風速: ${data.wind_speed} m/s, 風向: ${data.wind_direction}`;
         // hidden_fieldに新しい値をセット
         document.querySelector('input[name="search_data[wind_speed]"]').value = data.wind_speed;
-        document.querySelector('input[name="search_data[wind_direction]"]').value = data.wind.direction;
+        document.querySelector('input[name="search_data[wind_direction]"]').value = data.wind_direction;
       }
     })
     .catch(error => {
       console.error('Error fetching wind data:', error);
       document.getElementById('wind-result').textContent = '風の情報を取得できませんでした。';
+    });
+  });
+
+  // ドロップダウンメニューの挙動を制御するコード
+  document.querySelectorAll('[data-dropdown-target="button"]').forEach(button => {
+    button.addEventListener('click', function() {
+      const dropdown = this.nextElementSibling;  // 次の兄弟要素（ドロップダウンメニュー）
+      dropdown.classList.toggle('hidden');  // メニューの表示/非表示を切り替え
+    });
+  });
+
+  // ドロップダウン内の選択肢をクリックした時の処理
+  document.querySelectorAll('[data-action="click->dropdown#selectOption"]').forEach(option => {
+    option.addEventListener('click', function() {
+      const selectedValue = this.getAttribute('data-value');
+      const button = this.closest('[data-dropdown-target="dropdown"]').previousElementSibling;  // 親メニューのボタン
+
+      // ボタンの中のspanを更新
+      button.querySelector('span').textContent = this.textContent.trim();
+
+      this.closest('[data-dropdown-target="dropdown"]').classList.add('hidden');  // ドロップダウンを隠す
     });
   });
 </script>

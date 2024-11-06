@@ -34,7 +34,7 @@ class SearchDatasController < ApplicationController
 
   def index
     @q = SearchData.ransack(params[:q])
-    @search_datas = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(10)
+    @search_datas = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(8)
   end
 
   def create

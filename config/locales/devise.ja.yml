@@ -4,3 +4,7 @@ ja:
       success: "ログインに成功しました。"
     sessions:
       signed_out: "ログアウトに成功しました。"
+    registrations:
+      user:
+        signed_up: "ユーザー登録が完了しました！"
+      signed_up: "登録が完了しました！"

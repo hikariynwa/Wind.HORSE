@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "static_pages#top"
+  get "static_pages/terms" => "static_pages#terms"
 
   # 風の情報を取得するルーティング
   resources :winds, only: [ :show ]

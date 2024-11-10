@@ -46,3 +46,7 @@ ja:
       last: "最後"
       previous: "前"
       next: "次"
+    titles:
+      login: "ログイン"
+      terms: "利用規約"
+      

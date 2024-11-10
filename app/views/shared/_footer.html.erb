@@ -1,11 +1,11 @@
 <footer class="bg-gray-600 h-16">
-  <nav class="flex justify-between items-center h-16">
-    <div class="absolute left-6">
+  <nav class="flex justify-between items-center h-full px-6">
+    <div>
       <%= link_to "お問い合わせ", "#", class: "text-white text-lg" %>
     </div>
 
-    <div class="flex space-x-8 absolute right-6">
-      <%= link_to "利用規約", "#", class: "text-white text-lg" %>
+    <div class="flex space-x-8">
+      <%= link_to "利用規約", static_pages_terms_path, class: "text-white text-lg" %>
       <%= link_to "プライバシーポリシー", "#", class: "text-white text-lg" %>
     </div>
   </nav>

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "static_pages#top"
   get "static_pages/terms" => "static_pages#terms"
+  get "static_pages/privacy" => "static_pages#privacy"
 
   # 風の情報を取得するルーティング
   resources :winds, only: [ :show ]

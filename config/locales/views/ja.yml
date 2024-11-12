@@ -52,3 +52,5 @@ ja:
       privacy: "プライバシーポリシー"
     links:
       contact: "お問い合わせ"
+    notices:
+      search_data_destroyed: "データの削除に成功しました"

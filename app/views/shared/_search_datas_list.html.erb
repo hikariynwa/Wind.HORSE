@@ -26,7 +26,7 @@
         <td class="py-2 px-4 border-b text-center">
             <%= link_to "詳細", search_data_path(search_data, location: search_data.location_name), class: "bg-blue-500 text-white px-2 py-1 rounded" %>
             <%= link_to "編集", edit_search_data_path(search_data, location: search_data.location_name), class: "bg-green-500 text-white px-2 py-1 rounded" %>
-            <%= link_to "削除", search_data_path(search_data), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "bg-red-500 text-white px-2 py-1 rounded" %>
+            <%= link_to "削除", search_data_path(search_data), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "bg-red-500 text-white px-2 py-1 rounded" %>
         </td>
       </tr>
     </tbody>

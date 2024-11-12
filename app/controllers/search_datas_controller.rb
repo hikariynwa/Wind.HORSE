@@ -124,7 +124,7 @@ class SearchDatasController < ApplicationController
   def destroy
     @search_data = current_user.search_datas.find(params[:id])
     @search_data.destroy
-    redirect_to search_datas_path, status: :see_other, success: t('views.notices.board_destroyed')
+    redirect_to search_datas_path, status: :see_other, success: t("views.notices.search_data_destroyed_destroyed")
   end
 
   private

@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* ここからカスタムcssを追加 */
+
+@media (max-width: 430px) {
+  .search-field {
+    width: 80px;
+  }
+}
+
+@media (max-width: 639px) {
+  .direction-image {
+    top: 40%;
+    right: 1rem;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 430px) {
+  .show-table-container {
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: center;
+  word-wrap: break-word;
+}

@@ -1,12 +1,12 @@
 <footer class="bg-gray-600 h-16">
-  <nav class="flex justify-between items-center h-full px-6">
+  <nav class="flex justify-between items-center h-full px-6 text-white text-md">
     <div>
-      <%= link_to t("views.links.contact"), "https://docs.google.com/forms/d/e/1FAIpQLScWqM9N-ZV7gO82vDp9WifEVePZheSwpQKScYGFsLMBYqz3uA/viewform", class: "text-white text-lg" %>
+      <%= link_to t("views.links.contact"), "https://docs.google.com/forms/d/e/1FAIpQLScWqM9N-ZV7gO82vDp9WifEVePZheSwpQKScYGFsLMBYqz3uA/viewform" %>
     </div>
 
     <div class="flex space-x-8">
-      <%= link_to t("views.titles.terms"), static_pages_terms_path, class: "text-white text-lg" %>
-      <%= link_to t("views.titles.privacy"), static_pages_privacy_path, class: "text-white text-lg" %>
+      <%= link_to t("views.titles.terms"), static_pages_terms_path %>
+      <%= link_to t("views.titles.privacy"), static_pages_privacy_path %>
     </div>
   </nav>
 </footer>

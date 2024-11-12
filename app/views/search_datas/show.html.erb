@@ -1,9 +1,9 @@
-<div class="relative h-screen">
+<div class="relative min-h-screen flex flex-col items-center">
   <div class="w-full flex justify-center py-6">
     <div class="text-3xl"><%= @search_data.location_name %>競馬場</div>
   </div>
 
-  <div class="overflow-x-auto">
+  <div class="show-table-container">
     <table class="max-w-3xl mx-auto bg-white">
       <thead class="bg-gray-100">
         <tr>
@@ -31,11 +31,11 @@
   </div>
 
   <div id="course-image" class="flex justify-center mt-16" >
-    <%= image_tag @course_image, alt: "#{@location_name}競馬場コース", class: "max-w-xl h-auto" %>
+    <%= image_tag @course_image, alt: "#{@location_name}競馬場コース", class: "max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl h-auto" %>
   </div>
 
-  <div class="absolute top-48 right-96">
-    <%= image_tag 'direction.png', alt: "北", style: "transform: rotate(#{@course_rotation}); width: 100px;" %>
+  <div class="absolute top-48 right-1/2 transform translate-x-1/2 max-w-xs sm:max-w-md md:right-96 md:translate-x-0 direction-image">
+    <%= image_tag 'direction.png', alt: "北", class: "w-16 h-auto sm:w-20 md:w-24 lg:w-28", style: "transform: rotate(#{@course_rotation});" %>
   </div>
 
   <div class="w-full flex justify-center py-6">

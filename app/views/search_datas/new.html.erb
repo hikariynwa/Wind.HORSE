@@ -1,39 +1,40 @@
-<div class="relative h-screen">
+<div class="relative min-h-screen flex flex-col items-center bg-gray-100">
   <!-- タイトル部分 -->
-  <div class="w-full flex justify-center py-6">
-    <div class="text-3xl"><%= @location_name %>競馬場</div>
+  <div class="w-full text-center py-6">
+    <div class="text-3xl sm:text-4xl"><%= @location_name %>競馬場</div>
   </div>
   <!-- 風の情報を取得するボタン -->
   <div class="w-full flex justify-center py-6">
     <div>
-      <button id="fetch-wind" class="text-2xl bg-green-600 p-3 text-white w-full text-center">風の情報を取得する</button>
-      <div id="wind-result" class="mt-4 text-2xl text-blue-500 w-full text-center"></div>
+      <button id="fetch-wind" class="text-xl sm:text-2xl bg-green-600 p-3 text-white w-full max-w-sm rounded-lg">風の情報を取得する</button>
+      <div id="wind-result" class="mt-4 text-lg sm:text-2xl text-blue-500 w-full text-center"></div>
     </div>
   </div>
   <!-- 芝/砂と距離選択の表示 -->
   <div class="w-full flex justify-center py-6">
     <%= render 'shared/course_select' %>
   </div>
+
   <!-- 競馬場コース画像-->
   <div id="course-image" class="flex justify-center mt-16" >
-    <%= image_tag @course_image, alt: "#{@location_name}競馬場コース", class: "max-w-xl h-auto" %>
+    <%= image_tag @course_image, alt: "#{@location_name}競馬場コース", class: "max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl h-auto" %>
   </div>
 
-  <div class="absolute top-48 right-96">
-    <%= image_tag 'direction.png', alt: "北", style: "transform: rotate(#{@course_rotation}); width: 100px;" %>
+  <div class="absolute top-48 right-1/2 transform translate-x-1/2 max-w-xs sm:max-w-md md:right-96 md:translate-x-0 direction-image">
+    <%= image_tag 'direction.png', alt: "北", class: "w-16 h-auto sm:w-20 md:w-24 lg:w-28", style: "transform: rotate(#{@course_rotation});" %>
   </div>
 
-  <%= form_with model: @search_data, url: search_datas_path, local: true do |f| %>
+  <%= form_with model: @search_data, url: search_datas_path, local: true, class: "w-full max-w-xl mx-auto text-center" do |f| %>
     <%= f.hidden_field :location_name, value: @location_name %>
     <%= f.hidden_field :wind_speed, value: @wind_speed %>
     <%= f.hidden_field :wind_direction, value: @wind_direction %>
 
-    <div>
-      <%= f.label :memo, "メモ" %>
-      <%= f.text_area :memo %>
+    <div class="mb-4">
+      <%= f.label :memo, "メモ", class: "block text-lg mb-2" %>
+      <%= f.text_area :memo, class: "w-full border rounded-lg p-2" %>
     </div>
 
-    <%= f.submit "保存する", class: "bg-blue-500 text-white px-4 py-2" %>
+    <%= f.submit "保存する", class: "bg-blue-500 text-white px-4 py-2 rounded-lg" %>
   <% end %>
 </div>
 

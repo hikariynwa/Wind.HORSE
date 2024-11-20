@@ -41,7 +41,7 @@ gem "bootsnap", require: false
 
 gem "config"
 
-gem "rails-i18n", "~> 7.0.0"
+gem "rails-i18n", "~> 7.0.10"
 
 gem "kaminari"
 

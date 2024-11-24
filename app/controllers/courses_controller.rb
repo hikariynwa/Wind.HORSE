@@ -17,6 +17,8 @@ class CoursesController < ApplicationController
 
     # コース名に基づいて、対応する画像を設定
     case course_option
+    when "芝 1000m"
+      @course_image = "#{english_location.downcase}_turf_course_1000.png"
     when "芝 1200m"
       @course_image = "#{english_location.downcase}_turf_course_1200.png"
     when "芝 1400m"

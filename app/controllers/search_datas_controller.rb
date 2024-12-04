@@ -13,7 +13,7 @@ class SearchDatasController < ApplicationController
       "Niigata" => "新潟"
     }
 
-    @location_name = location_mapping[location]
+    @location_name = location
 
     @course_image = "#{location.downcase}_course.png"
 
@@ -62,7 +62,7 @@ class SearchDatasController < ApplicationController
 
     english_location = location_mapping[location]
 
-    @course_image = "#{english_location.downcase}_course.png"
+    @course_image = "#{location.downcase}_course.png"
 
     course_rotation_mapping = {
       "Fuchu" => "180deg",
@@ -93,7 +93,7 @@ class SearchDatasController < ApplicationController
 
     english_location = location_mapping[location]
 
-    @course_image = "#{english_location.downcase}_course.png"
+    @course_image = "#{location.downcase}_course.png"
 
     course_rotation_mapping = {
       "Fuchu" => "180deg",

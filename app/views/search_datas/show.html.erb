@@ -1,6 +1,6 @@
 <div class="relative min-h-screen flex flex-col items-center">
   <div class="w-full flex justify-center py-6">
-    <div class="text-3xl"><%= @search_data.location_name %>競馬場</div>
+    <div class="text-3xl"><%= t("views.location_name.#{@search_data.location_name.downcase}") %>競馬場</div>
   </div>
 
   <div class="show-table-container">
@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <tr>
-          <td class="py-2 px-4 border-b text-center"><%= @search_data.location_name %></td>
+          <td class="py-2 px-4 border-b text-center"><%= t("views.location_name.#{@search_data.location_name.downcase}") %></td>
           <td class="py-2 px-4 border-b text-center"><%= number_with_precision(@search_data.wind_speed, precision: 1) %></td>
           <td class="py-2 px-4 border-b text-center"><%= @search_data.wind_direction %></td>
           <td class="py-2 px-4 border-b text-center"><%= @search_data.memo %></td>

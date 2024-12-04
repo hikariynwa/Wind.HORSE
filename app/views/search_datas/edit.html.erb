@@ -1,6 +1,6 @@
 <div class="relative min-h-screen flex flex-col items-center">
   <div class="w-full text-center py-6">
-    <div class="text-3xl sm:text-4xl"><%= @search_data.location_name %>競馬場</div>
+    <div class="text-3xl"><%= t("views.location_name.#{@search_data.location_name.downcase}") %>競馬場</div>
   </div>
   <div class="w-full flex justify-center py-6">
     <div>

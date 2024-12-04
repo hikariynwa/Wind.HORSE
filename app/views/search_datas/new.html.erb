@@ -1,7 +1,7 @@
 <div class="relative min-h-screen flex flex-col items-center bg-gray-100">
   <!-- タイトル部分 -->
   <div class="w-full text-center py-6">
-    <div class="text-3xl sm:text-4xl"><%= @location_name %>競馬場</div>
+    <div class="text-3xl sm:text-4xl"><%= t("views.location_name.#{@location_name.downcase}") %>競馬場</div>
   </div>
   <!-- 風の情報を取得するボタン -->
   <div class="w-full flex justify-center py-6">

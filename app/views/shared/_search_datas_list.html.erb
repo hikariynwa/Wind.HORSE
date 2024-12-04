@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       <tr>
-        <td class="py-2 px-4 border-b text-center"><%= search_data.location_name %></td>
+        <td class="py-2 px-4 border-b text-center"><%= t("views.location_name.#{search_data.location_name.downcase}") %></td>
         <td class="py-2 px-4 border-b text-center"><%= number_with_precision(search_data.wind_speed, precision: 1) %></td>
         <td class="py-2 px-4 border-b text-center"><%= search_data.wind_direction %></td>
         <td class="py-2 px-4 border-b text-center"><%= truncate(search_data.memo, length: 8) %></td>

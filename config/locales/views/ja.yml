@@ -54,3 +54,7 @@ ja:
       contact: "お問い合わせ"
     notices:
       search_data_destroyed: "データの削除に成功しました"
+    location_name:
+      fuchu: "東京"
+      fushimi: "京都"
+      niigata: "新潟"

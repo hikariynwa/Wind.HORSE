@@ -1,4 +1,6 @@
 class SearchDatasController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy, :edit]
+
   def select; end
 
   def new

@@ -10,3 +10,4 @@ ja:
       signed_up: "登録が完了しました！"
     failure:
       invalid: "ログインに失敗しました。メールアドレスまたはパスワードをご確認ください。"
+      unauthenticated: "ログインしてください。"

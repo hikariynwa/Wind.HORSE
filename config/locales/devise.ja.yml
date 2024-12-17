@@ -2,12 +2,32 @@ ja:
   devise:
     omniauth_callbacks:
       success: "ログインに成功しました。"
+      failure: "ログインに失敗しました"
     sessions:
       signed_out: "ログアウトに成功しました。"
+      signed_in: "ログインに成功しました。"
+      already_signed_out: "すでにログアウト済みです。"
     registrations:
       user:
         signed_up: "ユーザー登録が完了しました！"
       signed_up: "登録が完了しました！"
+      updated: "アカウントが正常に更新されました。"
+      updated_but_not_signed_in: "アカウントが正常に更新されましたが、パスワードが変更されたため、再度ログインする必要があります。"
+      destroyed: "アカウントを正常に削除しました。またのご利用をお待ちしております。"
     failure:
       invalid: "ログインに失敗しました。メールアドレスまたはパスワードをご確認ください。"
       unauthenticated: "ログインしてください。"
+      not_found_in_database: "ユーザーが見つかりませんでした。メールアドレスまたはパスワードをご確認ください。"
+      already_authenticated: "すでにログインしています。"
+      inactive: "アカウントが有効化されていません。"
+      timeout: "セッションがタイムアウトしました。再度ログインしてください。"
+      unconfirmed: "メールアドレスを確認する必要があります。"
+    mailer:
+      reset_password_instructions:
+        subject: "パスワードリセットの手順"
+      password_change:
+        subject: "パスワードが変更されました"
+    passwords:
+      send_instructions: "パスワードリセットの手順を記載したメールを数分以内にお送りします。"
+      updated: "パスワードが正常に変更されました。ログインしました。"
+      updated_not_active: "パスワードが正常に変更されました。"

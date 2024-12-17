@@ -1,12 +1,20 @@
 class SearchDatasController < ApplicationController
   before_action :authenticate_user!, only: [ :create, :destroy, :edit ]
 
-  def select; end
+  def select
+    @error_message = params[:error]
+  end
 
   def new
     @search_data = SearchData.new
     # data-value属性の値がまずここに入る。
     location = params[:location]
+
+    if params[:location].blank?
+      flash.now[:alert] = "競馬場を選択してください"
+      render :select # selectアクションのビューを表示する
+      return
+    end
 
     # ローマ字名称を日本語に変換
     location_mapping = {

@@ -1,4 +1,6 @@
 class SearchDatasController < ApplicationController
+  include CoursesHelper
+
   before_action :authenticate_user!, only: [ :create, :destroy, :edit ]
 
   def select
@@ -16,28 +18,12 @@ class SearchDatasController < ApplicationController
       return
     end
 
-    # ローマ字名称を日本語に変換
-    location_mapping = {
-      "Fuchu" => "東京",
-      "Fushimi" => "京都",
-      "Niigata" => "新潟"
-    }
-
     @location_name = location
 
     @course_image = "#{location.downcase}_course.png"
 
-    # 競馬場ごとの方位画像の回転角度を設定
-    course_rotation_mapping = {
-      "Fuchu" => "180deg",
-      "Fushimi" => "45deg",
-      "Niigata" => "135deg"
-    }
+    @course_rotation = rotation_for_course(location)
 
-    # 回転角度を変数に格納
-    @course_rotation = course_rotation_mapping[location]
-
-    # 既に取得済みの風の情報を一時的に格納
     @wind_speed = params[:wind_speed]
     @wind_direction = params[:wind_direction]
   end
@@ -64,23 +50,11 @@ class SearchDatasController < ApplicationController
     @search_data = SearchData.find(params[:id])
     location = @search_data.location_name
 
-    location_mapping = {
-      "東京" => "Fuchu",
-      "京都" => "Fushimi",
-      "新潟" => "Niigata"
-    }
-
-    english_location = location_mapping[location]
+    english_location = english_location_for(location)
 
     @course_image = "#{location.downcase}_course.png"
 
-    course_rotation_mapping = {
-      "Fuchu" => "180deg",
-      "Fushimi" => "45deg",
-      "Niigata" => "135deg"
-    }
-
-    @course_rotation = course_rotation_mapping[english_location]
+    @course_rotation = rotation_for_course(location)
 
     respond_to do |format|
       format.turbo_stream
@@ -95,23 +69,11 @@ class SearchDatasController < ApplicationController
     @search_data = current_user.search_datas.find(params[:id])
     location = @search_data.location_name
 
-    location_mapping = {
-      "東京" => "Fuchu",
-      "京都" => "Fushimi",
-      "新潟" => "Niigata"
-    }
-
-    english_location = location_mapping[location]
+    english_location = english_location_for(location)
 
     @course_image = "#{location.downcase}_course.png"
 
-    course_rotation_mapping = {
-      "Fuchu" => "180deg",
-      "Fushimi" => "45deg",
-      "Niigata" => "135deg"
-    }
-
-    @course_rotation = course_rotation_mapping[english_location]
+    @course_rotation = rotation_for_course(location)
 
     respond_to do |format|
       format.turbo_stream

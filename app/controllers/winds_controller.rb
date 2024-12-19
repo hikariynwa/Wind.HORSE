@@ -4,6 +4,9 @@ require "httparty"
 require "uri"
 
 class WindsController < ApplicationController
+  include WindHelper
+  include CoursesHelper
+
   before_action :validate_location, only: [ :show ]
 
   def show
@@ -13,9 +16,14 @@ class WindsController < ApplicationController
 
     if response.success?
       wind_data = response.parsed_response
+
+      course_name = english_location_for(location)
+      base_degree = base_degree_for(course_name) || 0
+
       @wind = {
         wind_speed: wind_data["wind"]["speed"],
-        wind_direction: wind_direction(wind_data["wind"]["deg"])
+        wind_direction: wind_direction_with_angle(wind_data["wind"]["deg"], base_degree),
+        adjusted_degree: wind_adjusted_angle(wind_data["wind"]["deg"], base_degree)
       }
 
       render json: @wind
@@ -28,12 +36,6 @@ class WindsController < ApplicationController
 
   def validate_location
     render json: { error: "場所を入力してください。" }, status: :bad_request if params[:id].blank?
-  end
-
-  def wind_direction(degree)
-    directions = [ "北", "北北東", "北東", "東北東", "東", "東南東", "南東", "南南東", "南", "南南西", "南西", "西南西", "西", "西北西", "北西", "北北西" ]
-    index = ((degree + 11.25) / 22.5).to_i % 16
-    directions[index]
   end
 end
 

@@ -1,7 +1,7 @@
 class SearchDatasController < ApplicationController
   include CoursesHelper
 
-  before_action :authenticate_user!, only: [ :create, :destroy, :edit ]
+  before_action :authenticate_user!, except: [:new, :select]
 
   def select
     @error_message = params[:error]
@@ -29,7 +29,7 @@ class SearchDatasController < ApplicationController
   end
 
   def index
-    @q = SearchData.ransack(params[:q])
+    @q = current_user.search_datas.ransack(params[:q])
     @search_datas = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(8)
   end
 

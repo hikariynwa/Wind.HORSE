@@ -1,7 +1,7 @@
 class SearchDatasController < ApplicationController
   include CoursesHelper
 
-  before_action :authenticate_user!, except: [:new, :select]
+  before_action :authenticate_user!, except: [ :new, :select ]
 
   def select
     @error_message = params[:error]

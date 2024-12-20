@@ -61,6 +61,8 @@
     location = 'Fushimi';  // 伏見（京都競馬場）
   } else if (location === '新潟') {
     location = 'Niigata';  // 新潟
+  } else if (location === '中山') {
+    location = 'Funabashi';
   }
 
   fetch(`/winds/${location}`, {

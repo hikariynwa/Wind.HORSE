@@ -54,7 +54,10 @@
       location = 'Fushimi';
     } else if (location === '新潟') {
       location = 'Niigata';
+    } else if (location === '中山') {
+      location = 'Funabashi';
     }
+
 
     fetch(`/winds/${location}`, {
       method: 'GET',

@@ -1,8 +1,6 @@
 module WindHelper
   def wind_adjusted_angle(degree, base_degree)
-    adjusted_degree = (degree - base_degree) % 360
-    adjusted_degree += 360 if adjusted_degree < 0
-    adjusted_degree
+    (degree - base_degree) % 360
   end
 
   # 方角を日本語名で返す

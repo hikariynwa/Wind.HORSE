@@ -29,6 +29,16 @@ class SearchDatasController < ApplicationController
   end
 
   def index
+    if params[:q] && params[:q][:location_name_cont].present?
+      location_name_map = {
+        "東京" => "Fuchu",
+        "京都" => "Fushimi",
+        "新潟" => "Niigata",
+        "中山" => "Funabashi"
+      }
+      params[:q][:location_name_cont] = location_name_map[params[:q][:location_name_cont]]
+    end
+
     @q = current_user.search_datas.ransack(params[:q])
     @search_datas = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(8)
   end
